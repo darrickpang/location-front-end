@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-// import Welcome from './containers/Welcome';
-// import UserLoginSignUp from './components/UserLoginSignUp';
+import Welcome from './containers/Welcome';
+import UserLoginSignUp from './components/UserLoginSignUp';
 // import UserMainContent from './containers/UserMainContent';
 import { Switch, Route, withRouter} from 'react-router-dom';
 
