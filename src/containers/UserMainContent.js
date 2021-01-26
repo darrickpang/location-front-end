@@ -3,6 +3,12 @@ import {  withRouter, BrowserRouter as Router, Route } from 'react-router-dom';
 import { Button } from 'reactstrap';
 
 class UserMainContent extends React.Component {
+    state = {
+        receiver: [],
+        friends: [],
+        pending: []
+    }
+
     renderUserInfo = () => {
         return (
             <div className="student-info">
@@ -21,13 +27,97 @@ class UserMainContent extends React.Component {
         )
     }
 
+    renderNames = () => {
+        let receiver = []
+        for(let x = 0; x < this.props.friend_requests_as_receiver.length; x++){
+            receiver.push(this.props.friend_requests_as_receiver[x].requestor_name)
+        }
+        for(let x = 0; x < this.props.friend_requests_as_requestor.length; x++){
+            receiver.push(this.props.friend_requests_as_requestor[x].receiver_name)
+        }
+        let arr = [...receiver, this.props.student.name]
+        let names = this.props.student_names.filter(name => !arr.includes(name.name))
+
+        return names.map(name => {
+            return(
+                <div>
+                    {name.name}
+                    <button className="button" onClick={(e) => this.props.postFriendRequests(e, this.props.student, name)}>add friend</button>
+                </div>
+            ) 
+        })
+    }
+
+    renderFriendRequests = () => {
+        let friends = []
+        let pending = []
+
+        for(let x = 0; x < this.props.friend_requests_as_receiver.length; x++){
+            if(this.props.friend_requests_as_receiver[x].status === 'accepted'){
+                friends.push(this.props.friend_requests_as_receiver[x].requestor_name)
+            }   
+            else{
+                pending.push(this.props.friend_requests_as_receiver[x].requestor_name)
+            }
+        }
+
+        for(let x = 0; x < this.props.friend_requests_as_requestor.length; x++){
+            if(this.props.friend_requests_as_requestor[x].status === 'accepted'){
+                friends.push(this.props.friend_requests_as_requestor[x].receiver_name)
+            }
+            else{
+                pending.push(this.props.friend_requests_as_requestor[x].receiver_name)
+            }
+        }
+
+        return this.props.friend_requests_as_receiver.map(name => {
+            if(name.status === 'pending'){
+                return(
+                    <div>
+                        {name.requestor_name}
+                        <button className="button" onClick={(e) => this.props.handleAccept(e, name.id)}>Accept</button>
+                    </div>
+                )
+            }
+        })
+    }
+
+    renderFriends = () => {
+        let friends = []
+
+        for(let x = 0; x < this.props.friend_requests_as_receiver.length; x++){
+            if(this.props.friend_requests_as_receiver[x].status === 'accepted'){
+                friends.push(this.props.friend_requests_as_receiver[x].requestor_name)
+            }   
+        }
+
+        for(let x = 0; x < this.props.friend_requests_as_requestor.length; x++){
+            if(this.props.friend_requests_as_requestor[x].status === 'accepted'){
+                friends.push(this.props.friend_requests_as_requestor[x].receiver_name)
+            }
+        }
+        return friends.map(name => {
+            return(
+                <div>
+                    {name}
+                </div>
+            )
+        })
+    }
+
+
     render(){
         return(
             <div className="main-page">
                 Welcome to your main page. 
                 {this.renderUserInfo()}
                 {this.renderLogout()}               
- 
+                {/* Friend suggestions:
+                {this.renderNames()}
+                Waiting: 
+                {this.renderFriendRequests()}
+                Friends:    
+                {this.renderFriends()} */}
             </div> 
         )
     }

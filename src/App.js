@@ -85,6 +85,58 @@ class App extends React.Component {
     })
   }
 
+  // Friend requests
+  postFriendRequests = (e, student, target) => {
+    e.preventDefault()
+    fetch(`http://localhost:3000/friend_requests`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      },
+      body: JSON.stringify({
+        requestor_id: student.id,
+        requestor_name: student.name,
+        receiver_id: target.id,
+        receiver_name: target.name, 
+        status: 'pending'
+      })
+    })
+    .then(r => r.json())
+    .then(json => {
+      this.setState({
+        friend_requests: [...this.state.friend_requests, {
+          requestor_id: student.id,
+          requestor_name: student.name,
+          receiver_id: target.id,
+          receiver_name: target.name, 
+          status: 'pending'
+        }]
+      })
+    })
+  }
+
+  handleAccept = (e, target) => {
+    e.preventDefault()
+    fetch(`http://localhost:3000/friend_requests/${target}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      },
+      body: JSON.stringify({
+        id: target,
+        status: 'accepted'
+      })
+    })
+  }
+
+  handleDelete = (target) => {
+    fetch(`http://localhost:3000/friend_requests/${target}`, {
+      method: 'DELETE'
+    })
+  }
+
   renderUserLogin = () => {
     return <UserLoginSignUp login={true} userLogin={this.userLogin}/>
   }

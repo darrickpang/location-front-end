@@ -11,8 +11,8 @@ const Welcome = () => {
             <h1>Locator</h1>
             <h3>Log in or sign up to locate your friends and family.</h3>
             <br />
-            <Button className="login-button" onClick={() => history.push('/user_signup')}> User Sign Up</Button>
-            <Button className="login-button" onClick={() => history.push('/user_login')}>User Login</Button>
+            <Button className="button" onClick={() => history.push('/user_signup')}> User Sign Up</Button>
+            <Button className="button" onClick={() => history.push('/user_login')}>User Login</Button>
         </Container>
       </div>
   );
