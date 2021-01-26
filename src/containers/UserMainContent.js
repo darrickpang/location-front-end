@@ -11,7 +11,7 @@ class UserMainContent extends React.Component {
 
     renderUserInfo = () => {
         return (
-            <div className="student-info">
+            <div className="user-info">
                 <h3>User name: {this.props.user.name}</h3>
             </div>
         )
@@ -35,14 +35,14 @@ class UserMainContent extends React.Component {
         for(let x = 0; x < this.props.friend_requests_as_requestor.length; x++){
             receiver.push(this.props.friend_requests_as_requestor[x].receiver_name)
         }
-        let arr = [...receiver, this.props.student.name]
+        let arr = [...receiver, this.props.user.name]
         let names = this.props.student_names.filter(name => !arr.includes(name.name))
 
         return names.map(name => {
             return(
                 <div>
                     {name.name}
-                    <button className="button" onClick={(e) => this.props.postFriendRequests(e, this.props.student, name)}>add friend</button>
+                    <button className="button" onClick={(e) => this.props.postFriendRequests(e, this.props.user, name)}>add friend</button>
                 </div>
             ) 
         })
@@ -112,12 +112,12 @@ class UserMainContent extends React.Component {
                 Welcome to your main page. 
                 {this.renderUserInfo()}
                 {this.renderLogout()}               
-                {/* Friend suggestions:
+                Friend suggestions:
                 {this.renderNames()}
                 Waiting: 
                 {this.renderFriendRequests()}
                 Friends:    
-                {this.renderFriends()} */}
+                {this.renderFriends()}
             </div> 
         )
     }
