@@ -36,3 +36,7 @@
     transform: rotate(360deg);
   }
 }
+
+.page-header{
+  background-image: url(./image/Physical-World-Map-3360.jpg);
+}
