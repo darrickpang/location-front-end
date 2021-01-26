@@ -36,7 +36,7 @@ class UserMainContent extends React.Component {
             receiver.push(this.props.friend_requests_as_requestor[x].receiver_name)
         }
         let arr = [...receiver, this.props.user.name]
-        let names = this.props.student_names.filter(name => !arr.includes(name.name))
+        let names = this.props.user_names.filter(name => !arr.includes(name.name))
 
         return names.map(name => {
             return(
@@ -112,12 +112,12 @@ class UserMainContent extends React.Component {
                 Welcome to your main page. 
                 {this.renderUserInfo()}
                 {this.renderLogout()}               
-                Friend suggestions:
+                {/* Friend suggestions:
                 {this.renderNames()}
                 Waiting: 
                 {this.renderFriendRequests()}
                 Friends:    
-                {this.renderFriends()}
+                {this.renderFriends()} */}
             </div> 
         )
     }

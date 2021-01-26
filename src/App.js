@@ -11,6 +11,7 @@ class App extends React.Component {
       id: null,
       name: "",
     },
+    user_names: [], 
     friend_requests_as_receiver: [],
     friend_requests_as_requestor: [],
     token: ""
@@ -26,6 +27,11 @@ class App extends React.Component {
       .then(res => res.json())
       .then(json => this.userAuthResponse(json))
     }
+
+    //all user names 
+    fetch('http://localhost:3000/users')
+    .then(res => res.json())
+    .then(json => this.setState({user_names: json}))
   }
 
   userAuthResponse = (json) => {
@@ -36,6 +42,8 @@ class App extends React.Component {
           id: json.user.data.attributes.id,
           name: json.user.data.attributes.name,
         },
+        user_names: [], 
+        friend_requests: [],
         friend_requests_as_receiver: json.user.data.attributes.friend_requests_as_receiver, 
         friend_requests_as_requestor: json.user.data.attributes.friend_requests_as_requestor, 
         token: json.token
