@@ -112,12 +112,12 @@ class UserMainContent extends React.Component {
                 Welcome to your main page. 
                 {this.renderUserInfo()}
                 {this.renderLogout()}               
-                {/* Friend suggestions:
+                Friend suggestions:
                 {this.renderNames()}
                 Waiting: 
                 {this.renderFriendRequests()}
                 Friends:    
-                {this.renderFriends()} */}
+                {this.renderFriends()}
             </div> 
         )
     }

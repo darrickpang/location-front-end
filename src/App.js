@@ -160,7 +160,7 @@ class App extends React.Component {
   renderUserMainContent = () => {
     return <UserMainContent user ={this.state.user} token={this.state.token} postFriendRequests={this.postFriendRequests} 
             handleAccept={this.handleAccept} handleDelete={this.handleDelete} friend_requests_as_receiver={this.state.friend_requests_as_receiver}
-            friend_requests_as_requestor={this.state.friend_requests_as_requestor}/>
+            friend_requests_as_requestor={this.state.friend_requests_as_requestor} user_names={this.state.user_names}/>
   }
 
   render(){
