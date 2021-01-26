@@ -6,7 +6,7 @@ const Welcome = () => {
   let history = useHistory()
 
     return (
-      <div style={{backgroundImage: "url(" + require("../image/gettyimages-954979578-2048x2048.jpg") + ")",}} className="page-header">
+      <div style={{backgroundImage: "url(" + require("../image/Physical-World-Map-3360.jpg") + ")",}} className="page-header">
         <Container className='welcome-page'>
             <h1>Locator</h1>
             <h3>Log in or sign up to locate your friends and family.</h3>
