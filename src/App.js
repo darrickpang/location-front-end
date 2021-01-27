@@ -43,7 +43,6 @@ class App extends React.Component {
           name: json.user.data.attributes.name,
         },
         user_names: [], 
-        friend_requests: [],
         friend_requests_as_receiver: json.user.data.attributes.friend_requests_as_receiver, 
         friend_requests_as_requestor: json.user.data.attributes.friend_requests_as_requestor, 
         token: json.token

@@ -30,10 +30,10 @@ class UserMainContent extends React.Component {
     renderNames = () => {
         let receiver = []
         for(let x = 0; x < this.props.friend_requests_as_receiver.length; x++){
-            receiver.push(this.props.friend_requests_as_receiver[x].requestor_name)
+            this.state.receiver.push(this.props.friend_requests_as_receiver[x].requestor_name)
         }
         for(let x = 0; x < this.props.friend_requests_as_requestor.length; x++){
-            receiver.push(this.props.friend_requests_as_requestor[x].receiver_name)
+            this.state.receiver.push(this.props.friend_requests_as_requestor[x].receiver_name)
         }
         let arr = [...receiver, this.props.user.name]
         let names = this.props.user_names.filter(name => !arr.includes(name.name))
@@ -54,10 +54,10 @@ class UserMainContent extends React.Component {
 
         for(let x = 0; x < this.props.friend_requests_as_receiver.length; x++){
             if(this.props.friend_requests_as_receiver[x].status === 'accepted'){
-                friends.push(this.props.friend_requests_as_receiver[x].requestor_name)
+                this.state.friends.push(this.props.friend_requests_as_receiver[x].requestor_name)
             }   
             else{
-                pending.push(this.props.friend_requests_as_receiver[x].requestor_name)
+                this.state.pending.push(this.props.friend_requests_as_receiver[x].requestor_name)
             }
         }
 
