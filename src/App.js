@@ -12,6 +12,7 @@ class App extends React.Component {
       name: "",
     },
     user_names: [], 
+    friend_requests: [],
     friend_requests_as_receiver: [],
     friend_requests_as_requestor: [],
     token: ""
@@ -97,7 +98,7 @@ class App extends React.Component {
   }
 
   // Friend requests
-  postFriendRequests = (e, student, target) => {
+  postFriendRequests = (e, user, target) => {
     e.preventDefault()
     fetch(`http://localhost:3000/friend_requests`, {
       method: 'POST',
@@ -106,8 +107,8 @@ class App extends React.Component {
         Accept: 'application/json'
       },
       body: JSON.stringify({
-        requestor_id: student.id,
-        requestor_name: student.name,
+        requestor_id: user.id,
+        requestor_name: user.name,
         receiver_id: target.id,
         receiver_name: target.name, 
         status: 'pending'
@@ -117,8 +118,8 @@ class App extends React.Component {
     .then(json => {
       this.setState({
         friend_requests: [...this.state.friend_requests, {
-          requestor_id: student.id,
-          requestor_name: student.name,
+          requestor_id: user.id,
+          requestor_name: user.name,
           receiver_id: target.id,
           receiver_name: target.name, 
           status: 'pending'
