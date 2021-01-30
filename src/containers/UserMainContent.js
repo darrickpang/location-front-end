@@ -1,6 +1,7 @@
 import React from 'react';
 import {  withRouter, BrowserRouter as Router, Route } from 'react-router-dom';
 import { Button } from 'reactstrap';
+import { MapContainer } from './MapContainer';
 
 class UserMainContent extends React.Component {
     state = {
@@ -118,6 +119,7 @@ class UserMainContent extends React.Component {
                 {this.renderFriendRequests()}
                 Friends:    
                 {this.renderFriends()}
+                {this.renderMap()}
             </div> 
         )
     }
