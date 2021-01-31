@@ -118,7 +118,8 @@ class UserMainContent extends React.Component {
     renderLocation = () => {
         return(
             <div>
-                test
+                Location.js
+                {/* <Location /> */}
             </div>
         )
     }
@@ -136,8 +137,8 @@ class UserMainContent extends React.Component {
                 {this.renderFriendRequests()}
                 Friends:    
                 {this.renderFriends()}
-                {this.renderMap()}
                 {this.renderLocation()}
+                {this.renderMap()}
             </div> 
         )
     }
