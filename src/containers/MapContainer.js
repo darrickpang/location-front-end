@@ -4,6 +4,29 @@ import CurrentLocation from '../components/Map';
 // https://www.digitalocean.com/community/tutorials/how-to-integrate-the-google-maps-api-into-react-applications
 
 export class MapContainer extends Component {
+    state = {
+        showingInfoWindow: false,
+        activeMarker: {},
+        selectedPlace: {}
+    };
+    
+    onMarkerClick = (props, marker, e) => {
+        this.setState({
+            selectedPlace: props,
+            activeMarker: marker,
+            showingInfoWindow: true
+        });
+    }
+
+    onClose = props => {
+        if (this.state.showingInfoWindow) {
+            this.setState({
+                showingInfoWindow: false,
+                activeMarker: null
+            });
+        }
+    };
+
     render() {
         return (
             <div id="current-location">
