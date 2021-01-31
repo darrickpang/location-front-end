@@ -44,3 +44,5 @@ export default geolocated({
     },
     userDecisionTimeout: 5000,
 })(Location);
+
+// export default Location

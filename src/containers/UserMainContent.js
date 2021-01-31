@@ -2,7 +2,7 @@ import React from 'react';
 import {  withRouter, BrowserRouter as Router, Route } from 'react-router-dom';
 import { Button } from 'reactstrap';
 import { MapContainer } from './MapContainer';
-import { Location } from '../components/Location'
+import Location  from '../components/Location'
 
 class UserMainContent extends React.Component {
     state = {
@@ -119,7 +119,7 @@ class UserMainContent extends React.Component {
         return(
             <div>
                 Location.js
-                {/* <Location /> */}
+                <Location />
             </div>
         )
     }
