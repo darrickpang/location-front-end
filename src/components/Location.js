@@ -11,10 +11,9 @@ class Location extends React.Component{
             <table>
                 <tbody>
                     <tr>
+                        Your location is: 
                         <td>latitude</td>
                         <td>{this.props.coords.latitude}</td>
-                    </tr>
-                    <tr>
                         <td>longitude</td>
                         <td>{this.props.coords.longitude}</td>
                     </tr>
@@ -44,5 +43,3 @@ export default geolocated({
     },
     userDecisionTimeout: 5000,
 })(Location);
-
-// export default Location
