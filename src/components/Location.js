@@ -1,5 +1,5 @@
 import React from "react";
-import { geolocated } from "react-geolocated";
+import { geolocated, geoPropTypes } from "react-geolocated";
 
 class Location extends React.Component{
     render() {
@@ -36,6 +36,9 @@ class Location extends React.Component{
         );
     }
 }
+Location.propTypes = Object.assign({}, Location.propTypes, geoPropTypes);
+// Using ES6 object spread syntax
+Location.propTypes = { ...Location.propTypes, ...geoPropTypes };
 
 export default geolocated({
     positionOptions: {
