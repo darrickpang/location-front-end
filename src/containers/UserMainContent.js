@@ -106,6 +106,14 @@ class UserMainContent extends React.Component {
         })
     }
 
+    renderMap = () => {
+        return(
+            <div>
+                <MapContainer />
+            </div>
+        )
+    }
+
 
     render(){
         return(
