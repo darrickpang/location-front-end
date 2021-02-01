@@ -1,7 +1,9 @@
 import React from "react";
 import { geolocated, geoPropTypes } from "react-geolocated";
+import { GoogleMap } from "react-google-maps";
 
 class Location extends React.Component{
+    
     render() {
         return !this.props.isGeolocationAvailable ? (
             <div>Your browser does not support Geolocation</div>
