@@ -15,6 +15,7 @@ class App extends React.Component {
     friend_requests: [],
     friend_requests_as_receiver: [],
     friend_requests_as_requestor: [],
+    location: [], 
     token: ""
   }
 
