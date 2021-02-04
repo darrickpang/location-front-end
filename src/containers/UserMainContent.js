@@ -3,6 +3,7 @@ import {  withRouter, BrowserRouter as Router, Route } from 'react-router-dom';
 import { Button } from 'reactstrap';
 import { MapContainer } from './MapContainer';
 import Location  from '../components/Location'
+import Locator from '../components/Locator'
 
 class UserMainContent extends React.Component {
     state = {
@@ -124,6 +125,14 @@ class UserMainContent extends React.Component {
         )
     }
 
+    renderLocator = () => {
+        return(
+            <div>
+                <Locator />
+            </div>
+        )
+    }
+
 
     render(){
         return(
@@ -138,6 +147,7 @@ class UserMainContent extends React.Component {
                 Friends:    
                 {this.renderFriends()}
                 {this.renderLocation()}
+                {this.renderLocator()}
                 {this.renderMap()}
             </div> 
         )
