@@ -16,6 +16,7 @@ class App extends React.Component {
     friend_requests_as_receiver: [],
     friend_requests_as_requestor: [],
     location: [], 
+    locate_user: [], 
     token: ""
   }
 
@@ -31,6 +32,14 @@ class App extends React.Component {
     }
 
     //all user names 
+    fetch('http://localhost:3000/locators')
+    .then(res => res.json())
+    .then(json => this.setState({location: json}))
+
+    fetch('http://localhost:3000/locate_users')
+    .then(res => res.json())
+    .then(json => this.setState({user_names: json}))
+
     fetch('http://localhost:3000/users')
     .then(res => res.json())
     .then(json => this.setState({user_names: json}))
