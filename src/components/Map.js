@@ -36,7 +36,7 @@ export class CurrentLocation extends React.Component {
         const current = this.state.currentLocation;
         const google = this.props.google;
         const maps = google.maps;
-    
+        console.log(this.map)
         if (map) {
             let center = new maps.LatLng(current.lat, current.lng);
             map.panTo(center);
@@ -106,7 +106,6 @@ export class CurrentLocation extends React.Component {
 
     render() {
         const style = Object.assign({}, mapStyles.map);
-    
         return (
             <div>
                 <div style={style} ref="map">
