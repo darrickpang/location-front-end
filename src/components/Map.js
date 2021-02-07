@@ -31,20 +31,34 @@ export class CurrentLocation extends React.Component {
         }
     }
 
-    renderChildren() {
-        const { children } = this.props;
+    recenterMap() {
+        const map = this.map;
+        const current = this.state.currentLocation;
+        const google = this.props.google;
+        const maps = google.maps;
     
-        if (!children) return;
-    
-        return React.Children.map(children, c => {
-            if (!c) return;
-            return React.cloneElement(c, {
-                map: this.map,
-                google: this.props.google,
-                mapCenter: this.state.currentLocation
-            });
-        });
+        if (map) {
+            let center = new maps.LatLng(current.lat, current.lng);
+            map.panTo(center);
+        }
     }
+
+    componentDidMount() {
+        if (this.props.centerAroundCurrentLocation) {
+          if (navigator && navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(pos => {
+              const coords = pos.coords;
+              this.setState({
+                currentLocation: {
+                  lat: coords.latitude,
+                  lng: coords.longitude
+                }
+              });
+            });
+          }
+        }
+        this.loadMap();<^>
+      }
 
     render() {
         const style = Object.assign({}, mapStyles.map);
