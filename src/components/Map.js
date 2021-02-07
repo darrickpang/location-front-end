@@ -1,5 +1,5 @@
 import React from 'react';
-import MyMapComponent from './GooglePlaces'
+import ReactDOM from 'react-dom';
 // https://www.digitalocean.com/community/tutorials/how-to-integrate-the-google-maps-api-into-react-applications
 
 const mapStyles = {
