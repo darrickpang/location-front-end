@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 import ReactDOM from 'react-dom';
+import axios from 'axios';
+import Pusher from 'pusher-js';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import CurrentLocation from '../components/Map';
 // https://www.digitalocean.com/community/tutorials/how-to-integrate-the-google-maps-api-into-react-applications
 const mapStyles = {
@@ -54,7 +58,7 @@ export class MapContainer extends Component {
 }
   
 MapContainer = GoogleApiWrapper({
-    apiKey: `${process.env.REACT_APP_YOUR_API_KEY_NAME}`
+    apiKey: '123' //`${process.env.REACT_APP_YOUR_API_KEY_NAME}`
 })(MapContainer);
 
 const rootElement = document.getElementById("root");
