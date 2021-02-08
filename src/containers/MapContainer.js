@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
+import ReactDOM from 'react-dom';
 import CurrentLocation from '../components/Map';
 // https://www.digitalocean.com/community/tutorials/how-to-integrate-the-google-maps-api-into-react-applications
+const mapStyles = {
+    width: '100%',
+    height: '100%'
+};
 
 export class MapContainer extends Component {
     state = {
@@ -48,6 +53,9 @@ export class MapContainer extends Component {
     }
 }
   
-export default GoogleApiWrapper({
+MapContainer = GoogleApiWrapper({
     apiKey: `${process.env.REACT_APP_YOUR_API_KEY_NAME}`
 })(MapContainer);
+
+const rootElement = document.getElementById("root");
+ReactDOM.render(<MapContainer />, rootElement);
