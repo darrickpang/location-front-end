@@ -3,9 +3,10 @@ import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import Pusher from 'pusher-js';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import CurrentLocation from '../components/Map';
+import GoogleMap from 'google-map-react';
 
 // https://www.digitalocean.com/community/tutorials/how-to-integrate-the-google-maps-api-into-react-applications
 const mapStyles = {
