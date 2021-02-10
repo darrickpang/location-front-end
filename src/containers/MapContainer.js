@@ -23,7 +23,7 @@ export class MapContainer extends Component {
         users_online: [],
         current_user: ''
     };
-
+    // start 
     componentDidMount() {
         let pusher = new Pusher('PUSHER_APP_KEY', {
             authEndpoint: "http://localhost:3128/pusher/auth",
@@ -100,6 +100,9 @@ export class MapContainer extends Component {
         }
     }
     
+
+    // end 
+
     onMarkerClick = (props, marker, e) => {
         this.setState({
             selectedPlace: props,
@@ -118,6 +121,30 @@ export class MapContainer extends Component {
     };
 
     render() {
+        // let locationMarkers = Object.keys(this.state.locations).map((username, id) => {
+        //     return (
+        //         <Marker
+        //             key={id}
+        //             title={`${username === this.state.current_user ? 'My location' : username + "'s location"}`}
+        //             lat={this.state.locations[`${username}`].lat}
+        //             lng={this.state.locations[`${username}`].lng}
+        //         >
+        //         </Marker>
+        //     );
+        // });
+  
+        // return (
+        //     <div>
+        //         <GoogleMap
+        //             style={mapStyles}
+        //             bootstrapURLKeys={{ key: 'GOOGLE_MAPS_API_KEY' }}
+        //             center={this.state.center}
+        //             zoom={14}
+        //         >
+        //             {locationMarkers}
+        //         </GoogleMap>
+        //     </div>
+        //   )
         return (
             <CurrentLocation
                 centerAroundCurrentLocation
