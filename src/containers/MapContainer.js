@@ -17,8 +17,53 @@ export class MapContainer extends Component {
     state = {
         showingInfoWindow: false,
         activeMarker: {},
-        selectedPlace: {}
+        selectedPlace: {},
+        center: { lat: 5.6219868, lng: -0.23223 },
+        locations: {},
+        users_online: [],
+        current_user: ''
     };
+
+    componentDidMount() {
+        let pusher = new Pusher('PUSHER_APP_KEY', {
+            authEndpoint: "http://localhost:3128/pusher/auth",
+            cluster: "mt1"
+        })
+        this.presenceChannel = pusher.subscribe('presence-channel');
+
+        this.presenceChannel.bind('pusher:subscription_succeeded', members => {
+            this.setState({
+                users_online: members.members,
+                current_user: members.myID
+            });
+            this.getLocation();
+            this.notify();
+        })
+
+        this.presenceChannel.bind('location-update', body => {
+            this.setState((prevState, props) => {
+                const newState = { ...prevState }
+                newState.locations[`${body.username}`] = body.location;
+                return newState;
+            });
+        });
+
+        this.presenceChannel.bind('pusher:member_removed', member => {
+            this.setState((prevState, props) => {
+                const newState = { ...prevState };
+                // remove member location once they go offline
+                delete newState.locations[`${member.id}`];
+                // delete member from the list of online users
+                delete newState.users_online[`${member.id}`];
+                return newState;
+          })
+          this.notify()
+        })
+
+        this.presenceChannel.bind('pusher:member_added', member => {
+            this.notify();
+        })
+      }
     
     onMarkerClick = (props, marker, e) => {
         this.setState({
