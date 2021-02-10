@@ -63,7 +63,42 @@ export class MapContainer extends Component {
         this.presenceChannel.bind('pusher:member_added', member => {
             this.notify();
         })
-      }
+    }
+
+    notify = () => toast(`Users online : ${Object.keys(this.state.users_online).length}`, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        type: 'info'
+    });
+
+    getLocation = () => {
+        if ("geolocation" in navigator) {
+            navigator.geolocation.watchPosition(position => {
+                let location = { lat: position.coords.latitude, lng: position.coords.longitude };
+                this.setState((prevState, props) => {
+                    let newState = { ...prevState };
+                    newState.center = location;
+                    newState.locations[`${prevState.current_user}`] = location;
+                    return newState;
+                });
+                axios.post("http://localhost:3128/update-location", {
+                    username: this.state.current_user,
+                    location: location
+                }).then(res => {
+                    if (res.status === 200) {
+                        console.log("new location updated successfully");
+                    }
+                });
+            })
+        } 
+        else {
+            alert("Sorry, geolocation is not available on your device. You need that to use this app");
+        }
+    }
     
     onMarkerClick = (props, marker, e) => {
         this.setState({
